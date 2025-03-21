@@ -34,19 +34,18 @@ const HomePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center px-6 py-12 space-y-16">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 py-12 space-y-16">
       {/* Profil Ma'lumotlari */}
-      <section className="flex flex-col md:flex-row items-center gap-12">
+      <section className="flex flex-col md:flex-row items-center gap-8 md:gap-12 lg:gap-16">
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
           className="text-center md:text-left max-w-2xl"
         >
-          <h1 className="text-5xl font-bold text-blue-400">{userData.fullName}</h1>
-          <p className="text-2xl mt-3 text-gray-300">{userData.profession}</p>
-          <p className="mt-5 text-gray-300 leading-relaxed">{userData.description}</p>
-          <a href="/projects" className="mt-5 inline-block text-blue-400 hover:text-blue-500 font-semibold text-lg flex items-center gap-2">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-blue-400">{userData.fullName}</h1>
+          <p className="text-xl sm:text-2xl mt-3 text-gray-300">{userData.profession}</p>
+          <a href="/projects" className="mt-5 inline-flex items-center gap-2 text-lg sm:text-xl text-blue-400 hover:text-blue-500 font-semibold">
             Show Projects <FaArrowRight />
           </a>
         </motion.div>
@@ -54,12 +53,12 @@ const HomePage = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="w-full max-w-md shadow-xl rounded-lg overflow-hidden border border-gray-700"
+          className="w-full max-w-sm sm:max-w-md shadow-xl rounded-lg overflow-hidden border border-gray-700"
         >
           <Slider {...settings}>
             {userData.myImage.map((img, index) => (
               <div key={index} className="w-full">
-                <img src={img} alt="Profile" className="w-full h-96 object-cover rounded-lg" />
+                <img src={img} alt="Profile" className="w-full h-72 sm:h-96 object-cover rounded-lg" />
               </div>
             ))}
           </Slider>
@@ -68,8 +67,8 @@ const HomePage = () => {
 
       {/* Skills Section */}
       <section className="text-center">
-        <h2 className="text-4xl font-semibold text-blue-400">{`Mening Ko'nikmalarim`}</h2>
-        <div className="flex flex-wrap justify-center gap-6 mt-6 text-5xl">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-blue-400">{`Mening Ko'nikmalarim`}</h2>
+        <div className="flex flex-wrap justify-center gap-6 mt-6 text-4xl sm:text-5xl">
           {[SiHtml5, SiCss3, SiJavascript, SiReact, SiRedux, SiTailwindcss, SiBootstrap, SiNodedotjs].map((Icon, index) => (
             <Icon key={index} className="hover:scale-110 transition-transform duration-300" />
           ))}
@@ -78,13 +77,13 @@ const HomePage = () => {
 
       {/* Projects Section */}
       <section className="text-center">
-        <h2 className="text-4xl font-semibold text-blue-400">Mening Loyihalarim</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-blue-400">Mening Loyihalarim</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-6">
           {userData.projects.map((project) => (
             <div key={project.id} className="bg-gray-800 p-5 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
-              <img src={project.image} alt={project.title} className="w-full h-60 object-cover rounded-md" />
-              <h3 className="text-xl font-bold text-blue-400 mt-4">{project.title}</h3>
-              <p className="text-gray-300 mt-2">{project.description}</p>
+              <img src={project.image} alt={project.title} className="w-full h-52 sm:h-60 object-cover rounded-md" />
+              <h3 className="text-lg sm:text-xl font-bold text-blue-400 mt-4">{project.title}</h3>
+              <p className="text-gray-300 mt-2 text-sm sm:text-base">{project.description}</p>
               <a href={project.link} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full">Batafsil</a>
             </div>
           ))}
@@ -93,16 +92,16 @@ const HomePage = () => {
 
       {/* Contact Section */}
       <section className="text-center">
-        <h2 className="text-4xl font-semibold text-blue-400">{`Bog'lanish`}</h2>
-        <div className="flex flex-wrap justify-center gap-6 mt-5 text-4xl">
+        <h2 className="text-3xl sm:text-4xl font-semibold text-blue-400">{`Bog'lanish`}</h2>
+        <div className="flex flex-wrap justify-center gap-6 mt-5 text-3xl sm:text-4xl">
           {[
-            { icon: FaGithub, link: userData.contact.github, color: "hover:text-gray-400" },
-            { icon: FaLinkedin, link: userData.contact.linkedin, color: "hover:text-gray-400" },
-            { icon: FaTelegram, link: userData.contact.telegram, color: "hover:text-gray-400" },
-            { icon: FaEnvelope, link: `mailto:${userData.contact.email}`, color: "hover:text-gray-400" },
-            { icon: FaPhoneAlt, link: `tel:${userData.contact.phone}`, color: "hover:text-gray-400" },
+            { icon: FaGithub, link: userData.contact.github },
+            { icon: FaLinkedin, link: userData.contact.linkedin },
+            { icon: FaTelegram, link: userData.contact.telegram },
+            { icon: FaEnvelope, link: `mailto:${userData.contact.email}` },
+            { icon: FaPhoneAlt, link: `tel:${userData.contact.phone}` },
           ].map((item, index) => (
-            <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className={`${item.color} transition-transform hover:scale-110`}>
+            <a key={index} href={item.link} target="_blank" rel="noopener noreferrer" className="hover:text-gray-400 transition-transform hover:scale-110">
               <item.icon />
             </a>
           ))}
