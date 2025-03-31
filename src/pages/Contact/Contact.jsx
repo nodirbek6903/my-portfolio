@@ -147,6 +147,7 @@ const Contact = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                autoComplete="off"
                 className="w-full p-3 border border-gray-300 rounded-md outline-none focus:ring-2 focus:ring-blue-400"
                 placeholder="Ismingizni kiriting"
               />

@@ -21,6 +21,7 @@ import {
   SiBootstrap,
   SiNodedotjs,
 } from "react-icons/si";
+import { useState } from "react";
 
 const HomePage = () => {
   const settings = {
@@ -32,6 +33,18 @@ const HomePage = () => {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+  const [hoveredSkill, setHoveredSkill] = useState(null)
+
+  const skills = [
+    { icon: SiHtml5, name: "HTML5" },
+  { icon: SiCss3, name: "CSS3" },
+  { icon: SiJavascript, name: "JavaScript" },
+  { icon: SiReact, name: "React" },
+  { icon: SiRedux, name: "Redux" },
+  { icon: SiTailwindcss, name: "Tailwind CSS" },
+  { icon: SiBootstrap, name: "Bootstrap" },
+  { icon: SiNodedotjs, name: "Node.js" },
+  ]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white flex flex-col items-center justify-center px-4 sm:px-6 md:px-12 lg:px-24 py-12 space-y-16">
@@ -68,9 +81,21 @@ const HomePage = () => {
       {/* Skills Section */}
       <section className="text-center">
         <h2 className="text-3xl sm:text-4xl font-semibold text-blue-400">{`Mening Ko'nikmalarim`}</h2>
-        <div className="flex flex-wrap justify-center gap-6 mt-6 text-4xl sm:text-5xl">
-          {[SiHtml5, SiCss3, SiJavascript, SiReact, SiRedux, SiTailwindcss, SiBootstrap, SiNodedotjs].map((Icon, index) => (
-            <Icon key={index} className="hover:scale-110 transition-transform duration-300" />
+        <div className="flex flex-wrap justify-center gap-6 mt-6 text-4xl sm:text-5xl relative">
+          {skills.map((skill, index) => (
+            <div
+              key={index}
+              className="relative flex flex-col items-center"
+              onMouseEnter={() => setHoveredSkill(index)}
+              onMouseLeave={() => setHoveredSkill(null)}
+            >
+              <skill.icon className="hover:scale-110 cursor-pointer transition-transform duration-300" />
+              {hoveredSkill === index && (
+                <span className="absolute top-full mt-2 px-2 py-1 text-sm text-gray-900 bg-white rounded shadow-lg">
+                  {skill.name}
+                </span>
+              )}
+            </div>
           ))}
         </div>
       </section>
